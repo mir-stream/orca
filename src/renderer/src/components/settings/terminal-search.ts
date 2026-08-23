@@ -31,6 +31,7 @@ import {
   getManageSessionsSearchEntries,
   getTerminalWindowSearchEntries
 } from './terminal-window-setup-search'
+import { getTerminalShellHistorySearchEntry } from './terminal-shell-history-search'
 import { createLocalizedCatalog } from '@/i18n/localized-catalog'
 import { translate } from '@/i18n/i18n'
 import { translateSearchKeyword } from './settings-search-keywords'
@@ -62,6 +63,7 @@ export {
   getManageSessionsSearchEntries,
   getTerminalWindowSearchEntries
 } from './terminal-window-setup-search'
+export { getTerminalShellHistorySearchEntry } from './terminal-shell-history-search'
 
 type TerminalAppearanceSearchOptions = {
   showDesktopThemeImports?: boolean
@@ -105,6 +107,7 @@ export function getTerminalPaneSearchEntries(platform: {
   const isWindowsTerminalHost = platform.isWindowsTerminalHost ?? platform.isWindows
   // Mirror visible platform controls so search cannot link to hidden options.
   return [
+    getTerminalShellHistorySearchEntry(),
     ...getTerminalRenderingSearchEntries(),
     ...getTerminalPaneInteractionSearchEntries(),
     ...(platform.isWindows ? getTerminalWindowsAdministratorSearchEntry() : []),
