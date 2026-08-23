@@ -11019,6 +11019,26 @@
               "713c4a2f92": "Choose the default shell for new terminal panes on Windows.",
               "13715f9d23": "Default Shell"
             }
+          },
+          "history": {
+            "scopeTitle": "Scope shell history to each workspace",
+            "scopeDescription": "Keep Arrow Up, reverse search, and shell autosuggestions isolated between workspaces. Changes apply to new terminal sessions.",
+            "search": {
+              "shell": "shell",
+              "history": "history",
+              "workspace": "workspace",
+              "worktree": "worktree",
+              "reverseSearch": "reverse search",
+              "autosuggestions": "autosuggestions",
+              "shared": "shared",
+              "isolated": "isolated",
+              "arrowUp": "Arrow Up",
+              "ctrlR": "Ctrl+R",
+              "histfile": "HISTFILE",
+              "zsh": "zsh",
+              "bash": "bash",
+              "fish": "fish"
+            }
           }
         },
         "voice": {
@@ -12453,6 +12473,10 @@
           "offCount": "{{count}} off",
           "machines": "Machines",
           "machinesDescription": "Choose which machines can show notifications on this computer. A paired server’s switch also covers work reached through it."
+        },
+        "TerminalShellHistorySection": {
+          "title": "Shell History",
+          "description": "Choose whether new terminal sessions use workspace-only or your shell's normal history."
         }
       },
       "right": {
