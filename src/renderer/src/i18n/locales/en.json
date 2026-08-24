@@ -12473,10 +12473,6 @@
           "offCount": "{{count}} off",
           "machines": "Machines",
           "machinesDescription": "Choose which machines can show notifications on this computer. A paired server’s switch also covers work reached through it."
-        },
-        "TerminalShellHistorySection": {
-          "title": "Shell History",
-          "description": "Choose whether new terminal sessions use workspace-only or your shell's normal history."
         }
       },
       "right": {
