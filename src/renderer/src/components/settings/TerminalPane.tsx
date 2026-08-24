@@ -14,8 +14,7 @@ import {
   getTerminalMacOptionSearchEntries,
   getTerminalMacYenSearchEntries,
   getTerminalPaneInteractionSearchEntries,
-  getTerminalRenderingSearchEntries,
-  getTerminalShellHistorySearchEntry
+  getTerminalRenderingSearchEntries
 } from './terminal-search'
 import {
   getTerminalRightClickToPasteSearchEntry,
@@ -27,7 +26,6 @@ import { ManageSessionsSection } from './ManageSessionsSection'
 import { TerminalAdvancedSection } from './TerminalAdvancedSection'
 import { TerminalInteractionSection } from './TerminalInteractionSection'
 import { TerminalRenderingSection } from './TerminalRenderingSection'
-import { TerminalShellHistorySection } from './TerminalShellHistorySection'
 import { TerminalWindowsShellSection } from './TerminalWindowsShellSection'
 import { TerminalWindowsAdministratorSection } from './TerminalWindowsAdministratorSection'
 import { TerminalCustomShellInput } from './TerminalCustomShellInput'
@@ -313,13 +311,6 @@ export function TerminalPane({
         updateSettings={updateSettings}
         windowsShell={windowsShell}
         gitBashAvailable={gitBashAvailable}
-      />
-    ) : null,
-    matchesSettingsSearch(searchQuery, getTerminalShellHistorySearchEntry()) ? (
-      <TerminalShellHistorySection
-        key="shell-history"
-        settings={settings}
-        updateSettings={updateSettings}
       />
     ) : null,
     matchesSettingsSearch(searchQuery, getTerminalRenderingSearchEntries()) ? (

@@ -12840,10 +12840,6 @@
               "windowsFailureDescription": "Enable notifications for Orca in Windows Settings."
             }
           }
-        },
-        "TerminalShellHistorySection": {
-          "title": "Shell History",
-          "description": "Choose whether new terminal sessions use workspace-only or your shell's normal history."
         }
       },
       "right": {
