@@ -11887,10 +11887,6 @@
           "targetDescription": "Higher values increase contrast where possible. Background colors stay unchanged.",
           "subtle": "Subtle",
           "strong": "Strong"
-        },
-        "TerminalShellHistorySection": {
-          "title": "Shell History",
-          "description": "Choose whether new terminal sessions use workspace-only or your shell's normal history."
         }
       },
       "right": {
