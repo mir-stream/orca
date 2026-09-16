@@ -6,6 +6,7 @@ import {
 } from './active-checks-status'
 import type { AppState } from '../../store/types'
 import type { PRInfo } from '../../../../shared/github/pull-request-types'
+import { TEST_REPO, makeWorktree } from '../../store/slices/store-test-helpers'
 
 function makePR(status: PRInfo['checksStatus']): PRInfo {
   return {
@@ -47,11 +48,13 @@ describe('getActiveChecksStatus', () => {
   })
 
   it('returns the optional cancellation presentation state', () => {
-    const state = {
+    const state: Pick<AppState, 'activeWorktreeId' | 'repos' | 'worktreesByRepo' | 'prCache'> = {
       activeWorktreeId: 'wt-1',
-      repos: [{ id: 'repo-1', path: '/repo' }],
+      repos: [{ ...TEST_REPO, id: 'repo-1', path: '/repo' }],
       worktreesByRepo: {
-        'repo-1': [{ id: 'wt-1', repoId: 'repo-1', branch: 'refs/heads/feature/test' }]
+        'repo-1': [
+          makeWorktree({ id: 'wt-1', repoId: 'repo-1', branch: 'refs/heads/feature/test' })
+        ]
       },
       prCache: {
         'repo-1::feature/test': {
@@ -59,7 +62,7 @@ describe('getActiveChecksStatus', () => {
           fetchedAt: 2
         }
       }
-    } as unknown as Pick<AppState, 'activeWorktreeId' | 'repos' | 'worktreesByRepo' | 'prCache'>
+    }
 
     expect(getActiveChecksStatus(state)).toBe('cancelled')
   })

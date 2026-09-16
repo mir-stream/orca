@@ -77,7 +77,7 @@ describe('syncPRChecksStatus', () => {
     })
 
     const succeeded = syncPRChecksStatus(
-      { ...baseState, ...cancelled } as AppState,
+      { ...baseState, ...cancelled },
       '/repo',
       'repo-id',
       'main',

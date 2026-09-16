@@ -141,6 +141,7 @@ export async function lookupPRByNumber(args: {
     )
     return {
       data: normalizePullRequestLookupData({
+        // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: `gh pr view --json` emits exactly the PR_LOOKUP_JSON_FIELDS keys that PullRequestLookupData mirrors.
         ...(JSON.parse(stdout) as PullRequestLookupData),
         statusCheckRollupComplete: true
       }),

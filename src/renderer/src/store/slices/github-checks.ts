@@ -16,12 +16,13 @@ export function applyDerivedPRCheckStatuses<T extends PRInfo>(
   checks: readonly PRCheckDetail[]
 ): T {
   const { status, presentationStatus } = derivePRCheckStatuses(checks)
-  const { checksPresentationStatus: _stalePresentation, ...rest } = pr
-  return {
-    ...rest,
-    checksStatus: status,
-    ...(presentationStatus ? { checksPresentationStatus: presentationStatus } : {})
-  } as T
+  const next: T = { ...pr, checksStatus: status }
+  if (presentationStatus) {
+    next.checksPresentationStatus = presentationStatus
+  } else {
+    delete next.checksPresentationStatus
+  }
+  return next
 }
 
 export function syncPRChecksStatus(

@@ -10,31 +10,35 @@ export type GitHubPRStackCheckRollup = {
   } | null
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null
+}
+
 function completeStackCheckContexts(rollup: GitHubPRStackCheckRollup): unknown[] | null {
   const contexts = rollup.contexts
   const totalCount = contexts?.totalCount
   const nodes = contexts?.nodes
   if (
+    typeof totalCount !== 'number' ||
     !Number.isInteger(totalCount) ||
-    (totalCount as number) <= 0 ||
+    totalCount <= 0 ||
     contexts?.pageInfo?.hasNextPage !== false ||
     !Array.isArray(nodes) ||
     nodes.length !== totalCount
   ) {
     return null
   }
-  const valid = nodes.every((node) => {
-    if (!node || typeof node !== 'object') {
+  const valid = nodes.every((node: unknown) => {
+    if (!isRecord(node)) {
       return false
     }
-    const context = node as Record<string, unknown>
-    if (context.__typename === 'CheckRun') {
+    if (node.__typename === 'CheckRun') {
       return (
-        typeof context.status === 'string' &&
-        (typeof context.conclusion === 'string' || context.conclusion === null)
+        typeof node.status === 'string' &&
+        (typeof node.conclusion === 'string' || node.conclusion === null)
       )
     }
-    return context.__typename === 'StatusContext' && typeof context.state === 'string'
+    return node.__typename === 'StatusContext' && typeof node.state === 'string'
   })
   return valid ? nodes : null
 }
