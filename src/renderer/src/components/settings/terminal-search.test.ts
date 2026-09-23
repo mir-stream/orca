@@ -12,9 +12,9 @@ describe('getTerminalPaneSearchEntries shell history', () => {
 
     for (const platform of platforms) {
       const entries = getTerminalPaneSearchEntries(platform)
-      expect(entries.some((entry) => entry.title === 'Scope shell history to each workspace')).toBe(
-        true
-      )
+      expect(
+        entries.some((entry) => entry.title === 'Scope bash, zsh, and fish history by workspace')
+      ).toBe(true)
     }
   })
 
@@ -22,7 +22,7 @@ describe('getTerminalPaneSearchEntries shell history', () => {
     'finds the shell history opt-out by searching %s',
     (query) => {
       const entries = getTerminalPaneSearchEntries({ isWindows: false, isMac: false }).filter(
-        (entry) => entry.title === 'Scope shell history to each workspace'
+        (entry) => entry.title === 'Scope bash, zsh, and fish history by workspace'
       )
 
       expect(entries).toHaveLength(1)
