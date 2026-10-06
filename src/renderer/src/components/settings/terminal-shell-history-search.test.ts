@@ -5,6 +5,7 @@ import { getTerminalShellHistorySearchEntry } from './terminal-shell-history-sea
 
 const LOCALIZED_HISTORY = [
   ['es', 'Separar el historial de bash, zsh y fish por espacio de trabajo'],
+  ['fr', "Séparer l'historique de bash, zsh et fish par espace de travail"],
   ['ja', 'ワークスペースごとに bash・zsh・fish の履歴を分離'],
   ['ko', '워크스페이스별로 bash·zsh·fish 기록 분리'],
   ['zh', '按工作区隔离 bash、zsh 和 fish 历史记录']
@@ -24,6 +25,7 @@ describe('terminal shell history localization', () => {
 
   it.each([
     ['es', 'búsqueda inversa'],
+    ['fr', 'recherche inversée'],
     ['ja', '自動候補'],
     ['ko', '역방향 검색'],
     ['zh', '历史记录']
@@ -33,11 +35,22 @@ describe('terminal shell history localization', () => {
     expect(matchesSettingsSearch(query, getTerminalShellHistorySearchEntry())).toBe(true)
   })
 
-  it.each(['es', 'ja', 'ko', 'zh'])('keeps technical and English aliases in %s', async (locale) => {
-    await i18n.changeLanguage(locale)
+  it.each(['es', 'fr', 'ja', 'ko', 'zh'])(
+    'keeps technical and English aliases in %s',
+    async (locale) => {
+      await i18n.changeLanguage(locale)
 
-    expect(getTerminalShellHistorySearchEntry().keywords).toEqual(
-      expect.arrayContaining(['history', 'workspace', 'Ctrl+R', 'HISTFILE', 'zsh', 'bash', 'fish'])
-    )
-  })
+      expect(getTerminalShellHistorySearchEntry().keywords).toEqual(
+        expect.arrayContaining([
+          'history',
+          'workspace',
+          'Ctrl+R',
+          'HISTFILE',
+          'zsh',
+          'bash',
+          'fish'
+        ])
+      )
+    }
+  )
 })
